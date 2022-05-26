@@ -32,7 +32,7 @@ public class TicketManager {
     }
 
     public boolean matches(Ticket ticket, String search) {
-        if (ticket.getArrivalAirport().contains(search) && ticket.getDepartureAirport().contains(search)) {
+        if (ticket.getArrivalAirport().contains(search) || ticket.getDepartureAirport().contains(search)) {
             return true;
         } else {
             return false;
