@@ -3,6 +3,9 @@ package ru.netology.manager;
 import ru.netology.data.Ticket;
 import ru.netology.repository.TicketRepository;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class TicketManager {
     protected TicketRepository repository;
 
@@ -14,21 +17,22 @@ public class TicketManager {
         repository.save(ticket);
     }
 
-    public Ticket[] searchTicket(String from, String to) {
+    public Ticket[] searchTicket(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
-            if (matches(ticket, from) || matches(ticket, to)) {
+            if (matches(ticket, from) && matches(ticket, to)) {
                 Ticket[] tmp = new Ticket[result.length + 1];
                 System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = ticket;
                 result = tmp;
             }
         }
+        Arrays.sort(result, comparator);
         return result;
     }
 
     public boolean matches(Ticket ticket, String search) {
-        if (ticket.getArrivalAirport().contains(search) || ticket.getDepartureAirport().contains(search)) {
+        if (ticket.getArrivalAirport().contains(search) && ticket.getDepartureAirport().contains(search)) {
             return true;
         } else {
             return false;
