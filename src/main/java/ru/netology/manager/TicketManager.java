@@ -3,6 +3,9 @@ package ru.netology.manager;
 import ru.netology.data.Ticket;
 import ru.netology.repository.TicketRepository;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class TicketManager {
     protected TicketRepository repository;
 
@@ -14,7 +17,7 @@ public class TicketManager {
         repository.save(ticket);
     }
 
-    public Ticket[] searchTicket(String from, String to) {
+    public Ticket[] searchTicket(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
             if (matches(ticket, from) && matches(ticket, to)) {
@@ -24,6 +27,7 @@ public class TicketManager {
                 result = tmp;
             }
         }
+        Arrays.sort(result, comparator);
         return result;
     }
 
