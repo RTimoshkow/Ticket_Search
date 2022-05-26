@@ -17,7 +17,7 @@ class TicketManagerTest {
 
     private Ticket ticket1 = new Ticket(1, 500, "Moskow", "Taganrog", 120);
     private Ticket ticket2 = new Ticket(21, 100, "Moskow", "Taganrog", 150);
-    private Ticket ticket3 = new Ticket(4, 1000, "Piter", "Magadan", 200);
+    private Ticket ticket3 = new Ticket(4, 1000, "Moskow", "Magadan", 200);
     private Ticket ticket4 = new Ticket(45, 800, "Amsterdam", "GongKong", 500);
 
 
