@@ -47,4 +47,12 @@ class TicketManagerTest {
 
         assertArrayEquals(actual, ticket.searchTicket("Moskow", "London", comparator));
     }
+
+    @Test
+    public void shouldOneTicket() {
+        Comparator<Ticket> comparator = new TicketByFastAscComparator();
+        Ticket[] actual = new Ticket[]{ticket3};
+
+        assertArrayEquals(actual, ticket.searchTicket("Piter", "Magadan", comparator));
+    }
 }
