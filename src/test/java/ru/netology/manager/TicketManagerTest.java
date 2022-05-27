@@ -33,9 +33,28 @@ class TicketManagerTest {
     public void shouldSearchTicket() {
         Ticket[] actual = ticket.searchTicket("Moskow", "Taganrog");
 
-        Arrays.sort(actual);
 
         Ticket[] expented = new Ticket[]{ticket2, ticket1};
+
+        assertArrayEquals(actual, expented);
+    }
+
+    @Test
+    public void shouldNoTicket() {
+        Ticket[] actual = ticket.searchTicket("Moskow", "London");
+
+
+        Ticket[] expented = new Ticket[0];
+
+        assertArrayEquals(actual, expented);
+    }
+
+    @Test
+    public void shouldOneTicket() {
+        Ticket[] actual = ticket.searchTicket("Moskow", "Magadan");
+
+
+        Ticket[] expented = new Ticket[]{ticket3};
 
         assertArrayEquals(actual, expented);
     }
